@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Truck Wraps LA · Your 24/7 Bilingual Receptionist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --asphalt:#0d0e11;
+    --asphalt-2:#15171c;
+    --panel:#1b1e25;
+    --line:#2a2e38;
+    --hivis:#ffc21a;      /* safety amber */
+    --vinyl:#ff3b30;      /* vinyl red */
+    --cream:#f5f3ee;
+    --muted:#9aa0ad;
+    --green:#2fd07a;
+    --maxw:760px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--asphalt);
+    color:var(--cream);
+    font-family:'Inter',system-ui,sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  h1,h2,h3,.display{font-family:'Anton',Impact,sans-serif;font-weight:400;letter-spacing:.5px;line-height:.96;text-transform:uppercase}
+
+  /* lane-line signature motif */
+  .lane{
+    height:8px;width:100%;
+    background:repeating-linear-gradient(90deg,var(--hivis) 0 38px,transparent 38px 74px);
+    opacity:.9;
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .lane.move{
+      background-size:74px 100%;
+      animation:slide 1.6s linear infinite;
+    }
+    @keyframes slide{from{background-position:0 0}to{background-position:74px 0}}
+  }
+
+  /* top bar */
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 22px;max-width:var(--maxw);margin:0 auto}
+  .brand{font-family:'Anton';font-size:18px;letter-spacing:1px;text-transform:uppercase}
+  .brand span{color:var(--hivis)}
+  .toggle{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--asphalt-2)}
+  .toggle button{
+    appearance:none;border:0;background:transparent;color:var(--muted);
+    font-family:'Inter';font-weight:700;font-size:12px;letter-spacing:.6px;
+    padding:7px 13px;cursor:pointer;transition:.18s;
+  }
+  .toggle button.active{background:var(--hivis);color:#1a1300}
+  .toggle button:focus-visible{outline:2px solid var(--cream);outline-offset:2px}
+
+  /* hero */
+  .hero{position:relative;padding:46px 0 40px;text-align:left}
+  .eyebrow{font-weight:700;font-size:12.5px;letter-spacing:2.2px;text-transform:uppercase;color:var(--hivis);margin-bottom:18px}
+  .hero h1{font-size:clamp(42px,11.5vw,76px)}
+  .hero h1 em{font-style:normal;color:var(--hivis);position:relative;white-space:nowrap}
+  .hero h1 .strike{color:var(--vinyl);position:relative;display:inline-block}
+  .hero h1 .strike::after{content:"";position:absolute;left:-2%;right:-2%;top:52%;height:7px;background:var(--vinyl);transform:rotate(-3deg)}
+  .hero p.sub{margin-top:22px;font-size:17px;color:#cdd2dc;max-width:560px}
+  .loc{margin-top:14px;font-size:13.5px;color:var(--muted);display:flex;align-items:center;gap:7px}
+  .loc b{color:var(--cream);font-weight:600}
+
+  /* primary CTA ringing phone */
+  .cta-row{margin-top:30px;display:flex;flex-wrap:wrap;gap:13px;align-items:center}
+  .btn{
+    display:inline-flex;align-items:center;gap:11px;cursor:pointer;
+    font-family:'Inter';font-weight:800;font-size:16px;letter-spacing:.2px;
+    border-radius:13px;padding:17px 22px;text-decoration:none;border:0;transition:.16s;
+  }
+  .btn-primary{background:var(--hivis);color:#1a1300;box-shadow:0 0 0 0 rgba(255,194,26,.55)}
+  .btn-primary:hover{transform:translateY(-2px)}
+  .btn-primary:focus-visible{outline:3px solid var(--cream);outline-offset:3px}
+  @media (prefers-reduced-motion:no-preference){
+    .btn-primary{animation:ring 2.4s ease-in-out infinite}
+    @keyframes ring{
+      0%,72%,100%{box-shadow:0 0 0 0 rgba(255,194,26,.5)}
+      80%{box-shadow:0 0 0 14px rgba(255,194,26,0)}
+    }
+    .btn-primary .ph{animation:wiggle 2.4s ease-in-out infinite;transform-origin:60% 60%}
+    @keyframes wiggle{0%,70%,100%{transform:rotate(0)}74%{transform:rotate(-16deg)}78%{transform:rotate(13deg)}82%{transform:rotate(-9deg)}86%{transform:rotate(0)}}
+  }
+  .btn-ghost{background:transparent;color:var(--cream);border:1px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--hivis);color:var(--hivis)}
+  .cta-note{font-size:12.5px;color:var(--muted);margin-top:11px}
+
+  /* sections */
+  section.block{padding:42px 0;border-top:1px solid var(--line)}
+  .tag{font-weight:700;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--vinyl);margin-bottom:14px}
+  .block h2{font-size:clamp(28px,7vw,40px);margin-bottom:14px}
+  .block p.lead{font-size:16.5px;color:#cdd2dc}
+
+  /* problem cards */
+  .cards{display:grid;gap:13px;margin-top:24px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:20px}
+  .card .ic{font-size:22px;margin-bottom:9px}
+  .card h3{font-size:17px;font-family:'Inter';font-weight:800;letter-spacing:0;text-transform:none;margin-bottom:5px}
+  .card p{font-size:14.5px;color:var(--muted)}
+
+  /* bilingual spotlight */
+  .spot{background:linear-gradient(160deg,#1c1407,#15171c 60%);border:1px solid #4a3a12;border-radius:18px;padding:26px 22px;margin-top:8px}
+  .spot .badge{display:inline-block;background:var(--hivis);color:#1a1300;font-weight:800;font-size:11.5px;letter-spacing:1px;text-transform:uppercase;padding:5px 11px;border-radius:7px;margin-bottom:15px}
+  .spot h2{font-size:clamp(26px,6.6vw,36px);margin-bottom:12px}
+  .spot h2 b{color:var(--hivis)}
+  .bubble-set{display:grid;gap:11px;margin-top:20px}
+  .bubble{padding:13px 16px;border-radius:14px;font-size:15px;max-width:84%}
+  .bubble.them{background:var(--asphalt-2);border:1px solid var(--line);border-bottom-left-radius:4px}
+  .bubble.her{background:var(--hivis);color:#1a1300;font-weight:500;justify-self:end;border-bottom-right-radius:4px}
+  .bubble .who{display:block;font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;opacity:.62;margin-bottom:3px}
+
+  /* steps */
+  .steps{counter-reset:s;display:grid;gap:14px;margin-top:22px}
+  .step{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:18px 18px}
+  .step .num{counter-increment:s;font-family:'Anton';font-size:30px;color:var(--hivis);line-height:1;min-width:38px}
+  .step .num::before{content:counter(s,decimal-leading-zero)}
+  .step h3{font-size:16px;font-family:'Inter';font-weight:800;letter-spacing:0;text-transform:none;margin-bottom:4px}
+  .step p{font-size:14px;color:var(--muted)}
+
+  /* ROI */
+  .roi{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:24px 22px;margin-top:8px}
+  .roi .big{font-family:'Anton';font-size:clamp(46px,13vw,78px);color:var(--hivis);line-height:.9}
+  .roi .big small{display:block;font-family:'Inter';font-weight:700;font-size:14px;color:var(--cream);letter-spacing:.4px;text-transform:none;margin-top:8px}
+  .roi-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:20px}
+  .roi-grid div{background:var(--asphalt-2);border:1px solid var(--line);border-radius:12px;padding:14px}
+  .roi-grid b{display:block;font-size:22px;color:var(--cream)}
+  .roi-grid span{font-size:12.5px;color:var(--muted)}
+  .roi .fine{margin-top:16px;font-size:12.5px;color:var(--muted)}
+
+  /* pricing */
+  .tiers{display:grid;gap:14px;margin-top:24px}
+  .tier{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px;position:relative}
+  .tier.best{border-color:var(--hivis);box-shadow:0 0 0 1px var(--hivis)}
+  .tier .rec{position:absolute;top:-11px;left:22px;background:var(--hivis);color:#1a1300;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:4px 11px;border-radius:7px}
+  .tier .tname{font-family:'Anton';font-size:24px;letter-spacing:.5px}
+  .tier .price{font-size:30px;font-weight:800;margin:6px 0 2px}
+  .tier .price small{font-size:14px;font-weight:600;color:var(--muted)}
+  .tier ul{list-style:none;margin-top:14px;display:grid;gap:8px}
+  .tier li{font-size:14px;color:#cdd2dc;display:flex;gap:9px;align-items:flex-start}
+  .tier li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green);margin-top:7px;flex:none}
+  .prepay{margin-top:16px;font-size:13px;color:var(--muted);text-align:center}
+  .prepay b{color:var(--hivis)}
+
+  /* close */
+  .close{text-align:center;padding:48px 0 26px;border-top:1px solid var(--line)}
+  .close h2{font-size:clamp(30px,8vw,46px);margin-bottom:16px}
+  .close p{color:#cdd2dc;max-width:480px;margin:0 auto 26px}
+  footer{text-align:center;padding:26px 22px 40px;color:var(--muted);font-size:12.5px}
+  footer .b{color:var(--cream);font-weight:600}
+  footer a{color:var(--hivis);text-decoration:none}
+  .powered{margin-top:8px;font-size:11.5px;letter-spacing:.4px}
+
+  [hidden]{display:none !important}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">TRUCK WRAPS <span>LA</span></div>
+  <div class="toggle" role="group" aria-label="Language">
+    <button id="en" class="active" onclick="setLang('en')">EN</button>
+    <button id="es" onclick="setLang('es')">ES</button>
+  </div>
+</div>
+<div class="lane move"></div>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="eyebrow" data-en="Built for Kevin · Truck Wraps LA" data-es="Hecho para Kevin · Truck Wraps LA">Built for Kevin · Truck Wraps LA</div>
+    <h1>
+      <span data-en="Your trucks are" data-es="Tus camiones son">Your trucks are</span>
+      <em data-en="billboards." data-es="vallas.">billboards.</em><br>
+      <span data-en="Your phone is a" data-es="Tu teléfono es un">Your phone is a</span>
+      <span class="strike" data-en="voicemail." data-es="buzón de voz.">voicemail.</span>
+    </h1>
+    <p class="sub" data-en="When you and the crew are mid-install, the phone keeps ringing and a $2,800 quote drives off to the next shop. Meet the receptionist who never puts down the squeegee to answer it." data-es="Cuando tú y el equipo están instalando, el teléfono sigue sonando y una cotización de $2,800 se va a otro taller. Conoce a la recepcionista que contesta sin soltar la herramienta.">When you and the crew are mid-install, the phone keeps ringing and a $2,800 quote drives off to the next shop. Meet the receptionist who never puts down the squeegee to answer it.</p>
+    <div class="loc">📍 <span data-en="8134 S Alameda St · Huntington Park, CA" data-es="8134 S Alameda St · Huntington Park, CA">8134 S Alameda St · Huntington Park, CA</span></div>
+
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://ace827.github.io/truck-wraps-la/" target="_blank" rel="noopener">
+        <span class="ph">📞</span>
+        <span data-en="Hear your receptionist" data-es="Escucha tu recepcionista">Hear your receptionist</span>
+      </a>
+      <a class="btn btn-ghost" href="#pricing" data-en="See the plans" data-es="Ver los planes">See the plans</a>
+    </div>
+    <div class="cta-note" data-en="Live demo · answers in English & Spanish · ~30 seconds" data-es="Demo en vivo · contesta en inglés y español · ~30 segundos">Live demo · answers in English &amp; Spanish · ~30 seconds</div>
+  </header>
+
+  <!-- PROBLEM -->
+  <section class="block">
+    <div class="tag" data-en="The leak" data-es="La fuga">The leak</div>
+    <h2 data-en="Where the jobs slip away" data-es="Por dónde se escapan los trabajos">Where the jobs slip away</h2>
+    <p class="lead" data-en="You already do the hard part your installs run 1–2 days and your prices beat the room. The gap isn't the work. It's the calls nobody could pick up." data-es="Ya haces la parte difícil instalas en 1–2 días y tus precios ganan. El problema no es el trabajo. Son las llamadas que nadie pudo contestar.">You already do the hard part your installs run 1–2 days and your prices beat the room. The gap isn't the work. It's the calls nobody could pick up.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="ic">🧤</div>
+        <h3 data-en="Hands full, phone ringing" data-es="Manos ocupadas, teléfono sonando">Hands full, phone ringing</h3>
+        <p data-en="Mid-wrap you can't stop to answer. Every missed call is a quote request and most callers won't leave a voicemail, they just dial the next shop." data-es="Instalando no puedes parar a contestar. Cada llamada perdida es una cotización y la mayoría no deja mensaje, solo llaman al siguiente taller.">Mid-wrap you can't stop to answer. Every missed call is a quote request and most callers won't leave a voicemail, they just dial the next shop.</p>
+      </div>
+      <div class="card">
+        <div class="ic">🌙</div>
+        <h3 data-en="After-hours & weekends" data-es="Después de horario y fines de semana">After-hours &amp; weekends</h3>
+        <p data-en="Food-truck and contractor owners call at night and on weekends exactly when no one's at the desk." data-es="Dueños de food trucks y contratistas llaman de noche y los fines de semana justo cuando no hay nadie en el escritorio.">Food-truck and contractor owners call at night and on weekends exactly when no one's at the desk.</p>
+      </div>
+      <div class="card">
+        <div class="ic">🗣️</div>
+        <h3 data-en="Spanish-first callers" data-es="Clientes que hablan español">Spanish-first callers</h3>
+        <p data-en="In Huntington Park, a huge share of your buyers prefer Spanish. A hold or a language gap loses the job before the quote starts." data-es="En Huntington Park, gran parte de tus clientes prefieren español. Una espera o una barrera de idioma pierde el trabajo antes de empezar.">In Huntington Park, a huge share of your buyers prefer Spanish. A hold or a language gap loses the job before the quote starts.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BILINGUAL SPOTLIGHT -->
+  <section class="block">
+    <div class="spot">
+      <span class="badge" data-en="The reason you wanted this" data-es="Por esto lo pediste">The reason you wanted this</span>
+      <h2 data-en="One receptionist. Both languages. No hold music." data-es="Una recepcionista. Dos idiomas. Sin música de espera.">One receptionist. <b>Both languages.</b> No hold music.</h2>
+      <p class="lead" data-en="Mateo hears which language the caller speaks and stays in it start to finish. Same warmth, same quote, English or Spanish." data-es="Mateo detecta el idioma del cliente y se queda en él de principio a fin. Mismo trato, misma cotización, en inglés o español.">Mateo hears which language the caller speaks and stays in it start to finish. Same warmth, same quote, English or Spanish.</p>
+      <div class="bubble-set">
+        <div class="bubble them"><span class="who">Caller</span><span data-en="Hola, ¿cuánto cuesta envolver mi troca de tacos?" data-es="Hola, ¿cuánto cuesta envolver mi troca de tacos?">Hola, ¿cuánto cuesta envolver mi troca de tacos?</span></div>
+        <div class="bubble her"><span class="who">Mateo</span><span data-en="¡Claro! Con gusto le coordino una cotización. ¿Es envoltura completa o parcial, y me comparte el largo de la troca?" data-es="¡Claro! Con gusto le coordino una cotización. ¿Es envoltura completa o parcial, y me comparte el largo de la troca?">¡Claro! Con gusto le coordino una cotización. ¿Es envoltura completa o parcial, y me comparte el largo de la troca?</span></div>
+        <div class="bubble them"><span class="who">Caller</span><span data-en="Full wrap, it's a 16-foot box truck." data-es="Completa, es un box truck de 16 pies.">Full wrap, it's a 16-foot box truck.</span></div>
+        <div class="bubble her"><span class="who">Mateo</span><span data-en="Perfect I've logged a full box-truck wrap. I'll grab your logo and a side photo, and have Kevin send the design within 48 hours. ✅" data-es="Perfecto registré una envoltura completa de box truck. Tomo su logo y una foto del costado, y Kevin le envía el diseño en 48 horas. ✅">Perfect I've logged a full box-truck wrap. I'll grab your logo and a side photo, and have Kevin send the design within 48 hours. ✅</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="block">
+    <div class="tag" data-en="How it runs" data-es="Cómo funciona">How it runs</div>
+    <h2 data-en="It works the way you already quote" data-es="Trabaja como tú ya cotizas">It works the way you already quote</h2>
+    <div class="steps">
+      <div class="step"><div class="num"></div><div><h3 data-en="Answers every call & DM" data-es="Contesta cada llamada y DM">Answers every call &amp; DM</h3><p data-en="Phone, website form, Instagram, TikTok, Facebook picked up instantly, 24/7, in English or Spanish." data-es="Teléfono, formulario, Instagram, TikTok, Facebook atendido al instante, 24/7, en inglés o español.">Phone, website form, Instagram, TikTok, Facebook picked up instantly, 24/7, in English or Spanish.</p></div></div>
+      <div class="step"><div class="num"></div><div><h3 data-en="Runs your quote intake" data-es="Hace la toma de cotización">Runs your quote intake</h3><p data-en="Asks the three things that set your price truck length, coverage, cab or no cab then collects the logo, a side photo, and contact info." data-es="Pregunta lo que fija tu precio largo, cobertura, cabina o no y junta el logo, una foto del costado y los datos de contacto.">Asks the three things that set your price truck length, coverage, cab or no cab then collects the logo, a side photo, and contact info.</p></div></div>
+      <div class="step"><div class="num"></div><div><h3 data-en="Books it or hands you the hot ones" data-es="Agenda o te pasa los buenos">Books it or hands you the hot ones</h3><p data-en="Schedules the install (weekends included) or texts you the qualified lead the second it lands nothing sits in a voicemail." data-es="Agenda la instalación (incluye fines de semana) o te envía el lead calificado al instante nada se queda en el buzón.">Schedules the install (weekends included) or texts you the qualified lead the second it lands nothing sits in a voicemail.</p></div></div>
+    </div>
+  </section>
+
+  <!-- ROI -->
+  <section class="block">
+    <div class="tag" data-en="The math" data-es="Los números">The math</div>
+    <h2 data-en="One saved wrap pays for the year" data-es="Una envoltura rescatada paga el año">One saved wrap pays for the year</h2>
+    <div class="roi">
+      <div class="big">$2,800<small data-en="≈ a single full-wrap job you didn't have to lose" data-es="≈ un solo trabajo de envoltura completa que no tenías que perder">≈ a single full-wrap job you didn't have to lose</small></div>
+      <div class="roi-grid">
+        <div><b>3+</b><span data-en="missed quote calls in a normal install week" data-es="llamadas de cotización perdidas en una semana normal">missed quote calls in a normal install week</span></div>
+        <div><b>24/7</b><span data-en="coverage nights, weekends, both languages" data-es="cobertura noches, fines de semana, dos idiomas">coverage nights, weekends, both languages</span></div>
+      </div>
+      <p class="fine" data-en="Recover just one job a month and the receptionist pays for itself many times over. Everything past that is margin. (Wrap jobs run roughly $2,000–$5,500 we're using the low end.)" data-es="Rescata solo un trabajo al mes y la recepcionista se paga muchas veces. Lo demás es ganancia. (Las envolturas van de ~$2,000 a $5,500 usamos el mínimo.)">Recover just one job a month and the receptionist pays for itself many times over. Everything past that is margin. (Wrap jobs run roughly $2,000–$5,500 we're using the low end.)</p>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="block" id="pricing">
+    <div class="tag" data-en="Plans" data-es="Planes">Plans</div>
+    <h2 data-en="Pick your coverage" data-es="Elige tu cobertura">Pick your coverage</h2>
+    <p class="lead" data-en="Month-to-month cancel anytime." data-es="Mes a mes cancela cuando quieras.">Month-to-month cancel anytime.</p>
+    <div class="tiers">
+      <div class="tier">
+        <div class="tname">AI Receptionist</div>
+        <div class="price">$497<small>/mo</small></div>
+        <ul>
+          <li data-en="24/7 bilingual call answering (English & Spanish)" data-es="Contestación bilingüe 24/7 (inglés y español)">24/7 bilingual call answering (English &amp; Spanish)</li>
+          <li data-en="After-hours & weekend coverage" data-es="Cobertura nocturna y de fin de semana">After-hours &amp; weekend coverage</li>
+          <li data-en="Appointment scheduling" data-es="Agendado de citas">Appointment scheduling</li>
+          <li data-en="Lead capture name, number, and what they need" data-es="Captura de leads nombre, número y lo que buscan">Lead capture name, number, and what they need</li>
+          <li data-en="CRM integration" data-es="Integración con CRM">CRM integration</li>
+        </ul>
+      </div>
+      <div class="tier best">
+        <div class="rec" data-en="Recommended" data-es="Recomendado">Recommended</div>
+        <div class="tname">AI Receptionist + Website Chatbot</div>
+        <div class="price">$797<small>/mo</small></div>
+        <ul>
+          <li data-en="Everything in AI Receptionist" data-es="Todo lo del Plan AI Receptionist">Everything in AI Receptionist</li>
+          <li data-en="AI chat widget on your website" data-es="Chat de IA en tu sitio web">AI chat widget on your website</li>
+          <li data-en="Instagram & Facebook DM handling" data-es="Manejo de DMs de Instagram y Facebook">Instagram &amp; Facebook DM handling</li>
+        </ul>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- CLOSE -->
+  <section class="close">
+    <h2 data-en="Try it before we talk" data-es="Pruébalo antes de hablar">Try it before we talk</h2>
+    <p data-en="Tap below, ask it for a quote in English or Spanish. Then Jonathan will call to set up your number." data-es="Toca abajo y pídele una cotización en inglés o español. Después Jonathan te llama para configurar tu número.">Tap below, ask it for a quote in English or Spanish. Then Jonathan will call to set up your number.</p>
+    <a class="btn btn-primary" href="https://ace827.github.io/truck-wraps-la/" target="_blank" rel="noopener">
+      <span class="ph">📞</span>
+      <span data-en="Open the live demo" data-es="Abrir la demo en vivo">Open the live demo</span>
+    </a>
+  </section>
+
+</div>
+
+<div class="lane"></div>
+<footer>
+  <div><span class="b">Truck Wraps LA</span> · (213) 999-1712 · Huntington Park, CA</div>
+  <div class="powered" data-en="Built by Orbit AI Automation · Jonathan Daugherty · jonathan@orbitaiautomation.com" data-es="Hecho por Orbit AI Automation · Jonathan Daugherty · jonathan@orbitaiautomation.com">Built by Orbit AI Automation · Jonathan Daugherty · jonathan@orbitaiautomation.com</div>
+</footer>
+
+<script>
+  function setLang(l){
+    document.documentElement.lang = l;
+    document.getElementById('en').classList.toggle('active', l==='en');
+    document.getElementById('es').classList.toggle('active', l==='es');
+    document.querySelectorAll('[data-en]').forEach(function(el){
+      var v = el.getAttribute('data-'+l);
+      if(v!==null) el.textContent = v;
+    });
+  }
+</script>
+</body>
+</html>
